@@ -7,21 +7,25 @@ using System.Threading.Tasks;
 namespace EMPhysicsClassLibrary
 {
     /// <summary>
-    /// A static class for storing physical constants.
+    /// A static class containing physical constants.
     /// </summary>
     public static class Constants
     {
         /// <summary>
-        /// Gets the Culomb constant, 8.9875517923(14)*10^9 kg * m^3 * s^−2 * C^−2
+        /// The speed of light, 299 792 458 m / s.
         /// </summary>
-        public static double K { get; } = 8.9875517923e9;
+        public const double C = 2.99792458e+8;
         /// <summary>
-        /// Mu nought, the permeability of free space, 1.25663706212(19)*10^−6 H / m
+        /// Epsilon nought, the permitivity of free space, 8.8541878128(13)*10^−12 F * m^−1.
         /// </summary>
-        public static double Mu0 { get; } = 1.25663706212e-6;
+        public const double Epsilon0 = 8.8541878128e-12;
         /// <summary>
-        /// Epsilon nought, the permitivity of free space, 8.8541878128(13)*10^−12 F * m^−1
+        /// The Culomb constant, 8.9875517923(14)*10^9 kg * m^3 * s^−2 * C^−2.
         /// </summary>
-        public static double Epsilon0 { get; } = 8.8541878128e-12;
+        public const double K = 8.9875517923e9;
+        /// <summary>
+        /// Mu nought, the permeability of free space, 1.25663706212(19)*10^−6 H / m.
+        /// </summary>
+        public const double Mu0 = 1.25663706212e-6;
     }
 }
