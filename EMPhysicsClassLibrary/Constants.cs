@@ -20,7 +20,7 @@ namespace EMPhysicsClassLibrary
         /// </summary>
         public const double Epsilon0 = 8.8541878128e-12;
         /// <summary>
-        /// The Culomb constant, 8.9875517923(14)*10^9 kg * m^3 * s^−2 * C^−2.
+        /// Coulomb's constant: 1 / (4 pi Epsilon0), 8.9875517923(14)*10^9 kg * m^3 * s^−2 * C^−2.
         /// </summary>
         public const double K = 8.9875517923e9;
         /// <summary>
