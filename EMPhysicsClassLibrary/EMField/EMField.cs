@@ -26,7 +26,7 @@ namespace EMPhysicsClassLibrary.EMField
         /// </param>
         /// <param name="d">The distance to the point charge.</param>
         /// <returns>The retarded electric potential caused by the point charge at r.</returns>
-        private static double GetPhi(
+        private static double GetPhiFromTimeInvariantPointCharge(
             double q, 
             double d)
         {
@@ -35,8 +35,8 @@ namespace EMPhysicsClassLibrary.EMField
             // Wikipedia article to vectors via the definition: integral over R^n of f(x)delta(x) dx =
             // = f(0), where f(x): R^n -> R^m, 0 is the 0-vector, and delta(dx) is the dirac delta 
             // function. This definition allows us to rewrite the retarded electric potential as 
-            // phi = K * (q / |r - r'|), where r' is now the position vector of the point charge 
-            // and q is its electric charge.
+            // phi = K * (q / |r - r_c|), where r_c is the position vector of the point charge and q 
+            // is its electric charge.
 
             // Also note that as we assume a stationary point charge of constant electric charge, we
             // need not compute the retarded time, as it will not be necessary in the computation
@@ -77,7 +77,7 @@ namespace EMPhysicsClassLibrary.EMField
         /// <returns>
         /// The gradient of the retarded electric potential caused by the point charge at position r.
         /// </returns>
-        private static Vector3 GetTheGradientOfPhi(
+        private static Vector3 GetTheGradientOfPhiFromTimeInvariantPointCharge(
             double q,
             Vector3 vectorFromRToThePointCharge)
         {
@@ -92,7 +92,7 @@ namespace EMPhysicsClassLibrary.EMField
             // Also note that as we assume a stationary point charge of constant electric charge, we 
             // need not compute the retarded time, as it will not be necessary in the computation
 
-            float dSquared = vectorFromRToThePointCharge.LengthSquared();
+            double dSquared = vectorFromRToThePointCharge.LengthSquared();
             Vector3 normalizedDirection = Vector3.Normalize(vectorFromRToThePointCharge);
 
             Vector3 gradientOfPhi = normalizedDirection * (float)(q * Constants.K / dSquared);
