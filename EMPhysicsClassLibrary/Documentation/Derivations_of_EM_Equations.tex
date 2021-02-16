@@ -11,13 +11,18 @@
     urlcolor=cyan,
 }
 
+\title{Derivations of EM Equations}
+\author{Siim Alas}
+
 \begin{document}
 
-\section{Derivations}
+\maketitle
 
-This file includes the derivations of the equations used in computing various quantities of the \href{https://en.wikipedia.org/wiki/Electromagnetic_field}{electromagnetic field}.
+\section*{Introduction}
 
-\subsection{Retarded potentials}
+This file contains the derivations of various equations used in the computation of the \href{https://en.wikipedia.org/wiki/Electromagnetic_field}{electromagnetic field}.
+
+\section{Retarded Potentials}
 
 This section includes the derivations of the equations used to compute the \href{https://en.wikipedia.org/wiki/Retarded_potential}{retarded potentials}, defined in the Wikipedia article as
 
@@ -32,7 +37,7 @@ This section includes the derivations of the equations used to compute the \href
 
 where $\phi(\vec{r}, t)$ is the retarded \href{https://en.wikipedia.org/wiki/Electric_potential}{electric potential}, $\vec{A}(\vec{r}, t)$ is the retarded \href{https://en.wikipedia.org/wiki/Magnetic_vector_potential}{magnetic vector potential}, $\rho(\vec{r'}, t)$ is the \href{https://en.wikipedia.org/wiki/Charge_density}{charge density}, $\vec{J}(\vec{r'}, t_r)$ is the \href{https://en.wikipedia.org/wiki/Current_density}{current density}, and $t_r = t - \frac{|\vec{r} - \vec{r'}|}{c}$ is the \href{https://en.wikipedia.org/wiki/Retarded_time}{retarded time}.
 
-\subsubsection{The effect of a time-invariant point charge on $\phi(\vec{r}, t)$}
+\subsection{The effect of a time-invariant point charge on $\phi(\vec{r}, t)$}
 
 The time-invariant point charge is modelled as having \href{https://en.wikipedia.org/wiki/Charge_density}{charge density}
 
@@ -58,7 +63,7 @@ which allows us to rewrite equation \ref{eq:definitionOfPhi} as
 
 meaning that, because \href{https://en.wikipedia.org/wiki/Integral}{integration} is linear, the effect of a group of point charges on $\phi(\vec{r}, t)$ can be modeled as sum of such components.
 
-\subsubsection{The effect of a time-invariant point charge on $\nabla \phi(\vec{r}, t)$}
+\subsection{The effect of a time-invariant point charge on $\nabla \phi(\vec{r}, t)$}
 
 Using equation \ref{eq:phiOfAPointCharge}, the effect a time-invariant point charge has on the \href{https://en.wikipedia.org/wiki/Gradient}{gradient} of $\phi(\vec{r}, t)$ is
 
@@ -67,7 +72,7 @@ Using equation \ref{eq:phiOfAPointCharge}, the effect a time-invariant point cha
     \nabla \phi(\vec{r}, t) = \nabla \left( \frac{1}{4 \pi \epsilon_0} \frac{q}{|\vec{r} - \vec{r_c}|} \right) = \frac{q}{4 \pi \epsilon_0} \nabla \left( \frac{1}{|\vec{r} - \vec{r_c}|} \right) = \frac{q}{4 \pi \epsilon_0} \frac{\vec{r_c} - \vec{r}}{|\vec{r} - \vec{r_c}|^3}
 \end{equation}
 
-\subsubsection{The effect of a straight 'wire' on $\vec{A}(\vec{r}, t)$}
+\subsection{The effect of a stationary straight 'wire' on $\vec{A}(\vec{r}, t)$}
 
 A straight 'wire' is modelled as a \href{https://en.wikipedia.org/wiki/Line_segment}{line segment} with unit \href{https://en.wikipedia.org/wiki/Tangent_vector}{tangent vector} $\hat{v}$ and a \href{https://en.wikipedia.org/wiki/Current_density}{current density}, which is $\vec{J}(\vec{r'}, t_r) \parallel \hat{v}$ on the line segment and $\vec{0}$ everywhere else.
 
@@ -115,12 +120,66 @@ we get
     \vec{A}(\vec{r}, t) = \frac{\mu_0}{4 \pi} \int \frac{\vec{J}(\vec{r'}, t_r)}{|\vec{r} - \vec{r'}|} d \vec{r'} = \frac{\mu_0 \hat{v}}{4 \pi} \iiint \frac{\delta(\varphi - \varphi_0) \delta(\theta - \theta_0) f(t_r) g(\rho)}{|\vec{r} - \vec{r'}|} d \rho d \varphi d \theta
 \end{equation*}
 
-As the $\delta(\varphi - \varphi_0) \delta(\theta - \theta_0)$ in the \href{https://en.wikipedia.org/wiki/Fraction}{numerator} of the \href{https://en.wikipedia.org/wiki/Integral#Terminology_and_notation}{integrand} guarantees it will be $0$ for all $\varphi \neq \varphi_0$ and $\theta \neq \theta_0$, we can safely expand the \href{https://en.wikipedia.org/wiki/Integral}{domain of integration} from $\varphi \in [0; \pi]; \theta \in [0; 2 \pi)$ to $\varphi, \theta \in \mathbb{R}$, as the added members in the 'sum' will all be $0$.
+As the $\delta(\varphi - \varphi_0) \delta(\theta - \theta_0)$ in the \href{https://en.wikipedia.org/wiki/Fraction}{numerator} of the \href{https://en.wikipedia.org/wiki/Integral#Terminology_and_notation}{integrand} guarantees it will be $0$ for all $\varphi \neq \varphi_0$ and $\theta \neq \theta_0$, we can safely expand the \href{https://en.wikipedia.org/wiki/Integral}{domain of integration} from $\varphi \in [0; \pi]; \theta \in [0; 2 \pi)$ to $\varphi, \theta \in \mathbb{R}$, because the added terms in the 'sum' will all be $0$.
 
-Using equation \ref{eq:DiracDeltaIdentityInMultipleDimensions}, we can simplify the integral to
+This as well as identity \ref{eq:DiracDeltaIdentityInMultipleDimensions} along with definitions \ref{eq:translatedSphericalCoordinatesForStraightWire} and \ref{eq:vForStraightWire} allows us to simplify the integral to
 
 \begin{equation*}
-    \frac{\mu_0 \hat{v}}{4 \pi} \int \frac{f(t - \frac{|\vec{r} - \rho \hat{v}|}{c}) g(\rho)}{|\vec{r} - \rho \hat{v}|} d \rho
+    \frac{\mu_0 \hat{v}}{4 \pi} \int \frac{f(t - \frac{|\vec{r} - (\vec{r_0} + \rho \hat{v})|}{c}) g(\rho)}{|\vec{r} - (\vec{r_0} + \rho \hat{v})|} d \rho
 \end{equation*}
+
+Further assuming that $g(\rho) = H(\rho - \rho_1) - H(\rho - \rho_2)$, where $H(x)$ is the \href{https://en.wikipedia.org/wiki/Heaviside_step_function}{heaviside step function} and $\rho_1 < \rho_2$ are \href{https://en.wikipedia.org/wiki/Constant_(mathematics)}{constants}, we can take the domain of integration to be $\rho \in [\rho_1; \rho_2]$, as all other values of $\rho$ will result in the numerator being $0$ and can thus be discarded.
+
+This allows us to write the above integral as
+
+\begin{equation*}
+    \frac{\mu_0 \hat{v}}{4 \pi} \int_{\rho_1}^{\rho_2} \frac{f(t - \frac{|\vec{r} - (\vec{r_0} + \rho \hat{v})|}{c})}{|\vec{r} - (\vec{r_0} + \rho \hat{v})|} d \rho
+\end{equation*}
+
+We can expand $|\vec{r} - (\vec{r_0} + \rho \hat{v})|$ as $\sqrt{|\hat{v}|^2 \rho^2 - 2 \rho (\hat{v} \cdot (\vec{r} - \vec{r_0})) + |\vec{r} - \vec{r_0}|^2}$. Note that as $\hat{v}$ is a unit vector, then by definition $|\hat{v}|^2 = |\hat{v}| = 1$.
+
+Extracting the square allows us to rewrite the \href{https://en.wikipedia.org/wiki/Expression_(mathematics)}{expression} under the \href{https://en.wikipedia.org/wiki/Radical_symbol}{radical} as $(\rho - (\hat{v} \cdot (\vec{r} - \vec{r_0})))^2 - (\hat{v} \cdot (\vec{r} - \vec{r_0}))^2 + |\vec{r} - \vec{r_0}|^2$.
+
+Defining $y = |\vec{r} - \vec{r_0}|^2 - (\hat{v} \cdot (\vec{r} - \vec{r_0}))^2$, we can \href{https://en.wikipedia.org/wiki/Change_of_variables}{change variables} via the relation $x = \rho - (\hat{v} \cdot (\vec{r} - \vec{r_0}) \Rightarrow dx = d \rho$. This allows us to rewrite $|\vec{r} - (\vec{r_0} + \rho \hat{v})|$ as $\sqrt{x^2 + y}$ and, subsequently, the integral as
+
+\begin{equation*}
+    \frac{\mu_0 \hat{v}}{4 \pi} \int_{x_1}^{x_2} \frac{f(t - \frac{\sqrt{x^2 + y}}{c})}{\sqrt{x^2 + y}} dx
+\end{equation*}
+
+where $x_n = \rho_n - (\hat{v} \cdot (\vec{r} - \vec{r_0}))$.
+
+\subsubsection{The special case of constant current}
+
+In the special case of $f(t - \frac{\sqrt{x^2 + y}}{c}) = I$, where $I$ is a constant, the above integral can be solved analytically by noting that $\frac{d}{dx} \arcsin(x) = \frac{1}{\sqrt{1-x^2}}$. This allows us to change variables to $i \sqrt{y} u = x \Rightarrow i \sqrt{y} du = dx$ and write the integral as
+
+\begin{equation*}
+    \frac{\mu_0 \hat{v}}{4 \pi} \int_{u_1}^{u_2} \frac{I}{\sqrt{y - y u^2}} i \sqrt{y} dx = i \frac{\mu_0 \hat{v} I}{4 \pi} \int_{u_1}^{u_2} \frac{I}{\sqrt{1 - u^2}} dx = i \frac{\mu_0 \hat{v} I}{4 \pi} (\arcsin(u) + C) |_{u_1}^{u_2}
+\end{equation*}
+
+where $u_n = - \frac{i}{\sqrt{y}} x_n$.
+
+Using the \href{https://en.wikipedia.org/wiki/List_of_trigonometric_identities#Exponential_definitions}{exponential definition} $\arcsin(u) = -i\ln(iu + \sqrt{1 - u^2})$, we get
+
+\begin{equation*}
+    i \frac{\mu_0 \hat{v} I}{4 \pi} (-i\ln(iu + \sqrt{1 - u^2})) |_{u_1}^{u_2} = \frac{\mu_0 \hat{v} I}{4 \pi} \ln \left( i(- \frac{i}{\sqrt{y}} x) + \sqrt{1 - (- \frac{i}{\sqrt{y}} x)^2} \right) |_{x_1}^{x_2} =
+\end{equation*}
+\begin{equation*}
+    = \frac{\mu_0 \hat{v} I}{4 \pi} \ln \left( \frac{x}{\sqrt{y}} + \sqrt{1 + \frac{x^2}{y}} \right) |_{x_1}^{x_2} = \frac{\mu_0 \hat{v} I}{4 \pi} \ln \left( \frac{x_2 + \sqrt{(x_2)^2 + y}}{x_1 + \sqrt{(x_1)^2 + y}} \right)
+\end{equation*}
+
+Transitioning back to coordinates of definition \ref{eq:translatedSphericalCoordinatesForStraightWire}, the effect a stationary straight wire with constant current $I$ has on $\vec{A}(\vec{r}, t_r)$ can be expressed as
+
+\begin{equation}
+    \label{eq:effectOfStationaryStraightWireWithConstantCurrentOnA}
+    \vec{A}(\vec{r}, t_r) = \frac{\mu_0 \hat{v} I}{4 \pi} \ln \left( \frac{\rho_2 + (\hat{v} \cdot (\vec{r} - \vec{r_0})) + |\vec{r} - (\vec{r_0} + \rho_2 \hat{v})|}{\rho_1 + (\hat{v} \cdot (\vec{r} - \vec{r_0})) + |\vec{r} - (\vec{r_0} + \rho_1 \hat{v})|} \right)
+\end{equation}
+
+If we assume $\rho_1 = 0$ and define $\vec{r_1} = \vec{r_0} + \rho_2 \hat{v} \Rightarrow \rho_2 = |r_1 - r_0|$, then the above expression can be written as
+
+\begin{equation*}
+    \vec{A}(\vec{r}, t_r) = \frac{\mu_0 \hat{v} I}{4 \pi} \ln \left( \frac{|\vec{r_1} - \vec{r_0}| + (\hat{v} \cdot (\vec{r} - \vec{r_0})) + |\vec{r} - \vec{r_1}|}{(\hat{v} \cdot (\vec{r} - \vec{r_0})) + |\vec{r} - \vec{r_0}|} \right)
+\end{equation*}
+
+Finally, note that this result also approximates cases where $I$ does depend on time, but $t_r \approx t$. In these cases, the current can be approximated as $I(t_r) \approx I(t)$ and brought outside the integral just like the constant current.
 
 \end{document}
