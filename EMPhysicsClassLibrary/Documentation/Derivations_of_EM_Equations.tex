@@ -120,40 +120,39 @@ we get
     \vec{A}(\vec{r}, t) = \frac{\mu_0}{4 \pi} \int \frac{\vec{J}(\vec{r'}, t_r)}{|\vec{r} - \vec{r'}|} d \vec{r'} = \frac{\mu_0 \hat{v}}{4 \pi} \iiint \frac{\delta(\varphi - \varphi_0) \delta(\theta - \theta_0) f(t_r) g(\rho)}{|\vec{r} - \vec{r'}|} d \rho d \varphi d \theta
 \end{equation*}
 
-As the $\delta(\varphi - \varphi_0) \delta(\theta - \theta_0)$ in the \href{https://en.wikipedia.org/wiki/Fraction}{numerator} of the \href{https://en.wikipedia.org/wiki/Integral#Terminology_and_notation}{integrand} guarantees it will be $0$ for all $\varphi \neq \varphi_0$ and $\theta \neq \theta_0$, we can safely expand the \href{https://en.wikipedia.org/wiki/Integral}{domain of integration} from $\varphi \in [0; \pi]; \theta \in [0; 2 \pi)$ to $\varphi, \theta \in \mathbb{R}$, because the added terms in the 'sum' will all be $0$.
-
-This as well as identity \ref{eq:DiracDeltaIdentityInMultipleDimensions} along with definitions \ref{eq:translatedSphericalCoordinatesForStraightWire} and \ref{eq:vForStraightWire} allows us to simplify the integral to
+As the $\delta(\varphi - \varphi_0) \delta(\theta - \theta_0)$ in the \href{https://en.wikipedia.org/wiki/Fraction}{numerator} of the \href{https://en.wikipedia.org/wiki/Integral#Terminology_and_notation}{integrand} guarantees it will be $0$ for all $\varphi \neq \varphi_0$ and $\theta \neq \theta_0$, we can safely expand the \href{https://en.wikipedia.org/wiki/Integral}{domain of integration} from $\varphi \in [0; \pi]; \theta \in [0; 2 \pi)$ to $\varphi, \theta \in \mathbb{R}$, because the added terms in the 'sum' will all be $0$. This as well as identity \ref{eq:DiracDeltaIdentityInMultipleDimensions} along with definitions \ref{eq:translatedSphericalCoordinatesForStraightWire} and \ref{eq:vForStraightWire} allows us to simplify the integral to
 
 \begin{equation*}
-    \frac{\mu_0 \hat{v}}{4 \pi} \int \frac{f(t - \frac{|\vec{r} - (\vec{r_0} + \rho \hat{v})|}{c}) g(\rho)}{|\vec{r} - (\vec{r_0} + \rho \hat{v})|} d \rho
+    \frac{\mu_0 \hat{v}}{4 \pi} \int \frac{f \left( t - \frac{|\vec{r} - (\vec{r_0} + \rho \hat{v})|}{c} \right) g(\rho)}{|\vec{r} - (\vec{r_0} + \rho \hat{v})|} d \rho
 \end{equation*}
 
-Further assuming that $g(\rho) = H(\rho - \rho_1) - H(\rho - \rho_2)$, where $H(x)$ is the \href{https://en.wikipedia.org/wiki/Heaviside_step_function}{heaviside step function} and $\rho_1 < \rho_2$ are \href{https://en.wikipedia.org/wiki/Constant_(mathematics)}{constants}, we can take the domain of integration to be $\rho \in [\rho_1; \rho_2]$, as all other values of $\rho$ will result in the numerator being $0$ and can thus be discarded.
-
-This allows us to write the above integral as
+Further assuming that $g(\rho) = H(\rho - \rho_1) - H(\rho - \rho_2)$, where $H(x)$ is the \href{https://en.wikipedia.org/wiki/Heaviside_step_function}{heaviside step function} and $\rho_1 < \rho_2$ are \href{https://en.wikipedia.org/wiki/Constant_(mathematics)}{constants}, we can take the domain of integration to be $\rho \in [\rho_1; \rho_2]$, because all other values of $\rho$ will result in the numerator being $0$ and can thus be discarded. This allows us to write the above integral as
 
 \begin{equation*}
-    \frac{\mu_0 \hat{v}}{4 \pi} \int_{\rho_1}^{\rho_2} \frac{f(t - \frac{|\vec{r} - (\vec{r_0} + \rho \hat{v})|}{c})}{|\vec{r} - (\vec{r_0} + \rho \hat{v})|} d \rho
+    \frac{\mu_0 \hat{v}}{4 \pi} \int_{\rho_1}^{\rho_2} \frac{f(t - \frac{1}{c} |\vec{r} - (\vec{r_0} + \rho \hat{v})|)}{|\vec{r} - (\vec{r_0} + \rho \hat{v})|} d \rho
 \end{equation*}
 
-We can expand $|\vec{r} - (\vec{r_0} + \rho \hat{v})|$ as $\sqrt{|\hat{v}|^2 \rho^2 - 2 \rho (\hat{v} \cdot (\vec{r} - \vec{r_0})) + |\vec{r} - \vec{r_0}|^2}$. Note that as $\hat{v}$ is a unit vector, then by definition $|\hat{v}|^2 = |\hat{v}| = 1$.
-
-Extracting the square allows us to rewrite the \href{https://en.wikipedia.org/wiki/Expression_(mathematics)}{expression} under the \href{https://en.wikipedia.org/wiki/Radical_symbol}{radical} as $(\rho - (\hat{v} \cdot (\vec{r} - \vec{r_0})))^2 - (\hat{v} \cdot (\vec{r} - \vec{r_0}))^2 + |\vec{r} - \vec{r_0}|^2$.
-
-Defining $y = |\vec{r} - \vec{r_0}|^2 - (\hat{v} \cdot (\vec{r} - \vec{r_0}))^2$, we can \href{https://en.wikipedia.org/wiki/Change_of_variables}{change variables} via the relation $x = \rho - (\hat{v} \cdot (\vec{r} - \vec{r_0}) \Rightarrow dx = d \rho$. This allows us to rewrite $|\vec{r} - (\vec{r_0} + \rho \hat{v})|$ as $\sqrt{x^2 + y}$ and, subsequently, the integral as
+We can expand $|\vec{r} - (\vec{r_0} + \rho \hat{v})|$ as $\sqrt{|\hat{v}|^2 \rho^2 - 2 \rho (\hat{v} \cdot (\vec{r} - \vec{r_0})) + |\vec{r} - \vec{r_0}|^2}$. Note that as $\hat{v}$ is a unit vector, then by definition $|\hat{v}|^2 = |\hat{v}| = 1$. Extracting the square allows us to rewrite the \href{https://en.wikipedia.org/wiki/Expression_(mathematics)}{expression} under the \href{https://en.wikipedia.org/wiki/Radical_symbol}{radical} as
 
 \begin{equation*}
-    \frac{\mu_0 \hat{v}}{4 \pi} \int_{x_1}^{x_2} \frac{f(t - \frac{\sqrt{x^2 + y}}{c})}{\sqrt{x^2 + y}} dx
+    (\rho - (\hat{v} \cdot (\vec{r} - \vec{r_0})))^2 - (\hat{v} \cdot (\vec{r} - \vec{r_0}))^2 + |\vec{r} - \vec{r_0}|^2
 \end{equation*}
+
+Defining $y = |\vec{r} - \vec{r_0}|^2 - (\hat{v} \cdot (\vec{r} - \vec{r_0}))^2$, we can \href{https://en.wikipedia.org/wiki/Change_of_variables}{change variables} via the relation $x = \rho - (\hat{v} \cdot (\vec{r} - \vec{r_0}) \Rightarrow dx = d \rho$, rewriting $|\vec{r} - (\vec{r_0} + \rho \hat{v})|$ as $\sqrt{x^2 + y}$ and, subsequently, the integral as
+
+\begin{equation}
+    \label{eq:simplifiedIntegralForTheEffectOfAStationaryStraightWireOnA}
+    \vec{A}(\vec{r}, t) = \frac{\mu_0 \hat{v}}{4 \pi} \int_{x_1}^{x_2} \frac{f(t - \frac{1}{c} \sqrt{x^2 + y})}{\sqrt{x^2 + y}} dx
+\end{equation}
 
 where $x_n = \rho_n - (\hat{v} \cdot (\vec{r} - \vec{r_0}))$.
 
 \subsubsection{The special case of constant current}
 
-In the special case of $f(t - \frac{\sqrt{x^2 + y}}{c}) = I$, where $I$ is a constant, the above integral can be solved analytically by noting that $\frac{d}{dx} \arcsin(x) = \frac{1}{\sqrt{1-x^2}}$. This allows us to change variables to $i \sqrt{y} u = x \Rightarrow i \sqrt{y} du = dx$ and write the integral as
+In the special case of $f(t - \frac{1}{c} \sqrt{x^2 + y}) = I$, where $I$ is a constant, the integral in equation \ref{eq:simplifiedIntegralForTheEffectOfAStationaryStraightWireOnA} can be solved analytically by noting that $\frac{d}{dx} \arcsin(x) = \frac{1}{\sqrt{1-x^2}}$. This allows us to change variables to $i \sqrt{y} u = x \Rightarrow i \sqrt{y} du = dx$ and write the integral as
 
 \begin{equation*}
-    \frac{\mu_0 \hat{v}}{4 \pi} \int_{u_1}^{u_2} \frac{I}{\sqrt{y - y u^2}} i \sqrt{y} dx = i \frac{\mu_0 \hat{v} I}{4 \pi} \int_{u_1}^{u_2} \frac{I}{\sqrt{1 - u^2}} dx = i \frac{\mu_0 \hat{v} I}{4 \pi} (\arcsin(u) + C) |_{u_1}^{u_2}
+    \frac{\mu_0 \hat{v}}{4 \pi} \int_{u_1}^{u_2} \frac{I}{\sqrt{y - y u^2}} i \sqrt{y} dx = i \frac{\mu_0 \hat{v} I}{4 \pi} \int_{u_1}^{u_2} \frac{1}{\sqrt{1 - u^2}} dx = i \frac{\mu_0 \hat{v} I}{4 \pi} (\arcsin(u) + C) |_{u_1}^{u_2}
 \end{equation*}
 
 where $u_n = - \frac{i}{\sqrt{y}} x_n$.
@@ -164,22 +163,80 @@ Using the \href{https://en.wikipedia.org/wiki/List_of_trigonometric_identities#E
     i \frac{\mu_0 \hat{v} I}{4 \pi} (-i\ln(iu + \sqrt{1 - u^2})) |_{u_1}^{u_2} = \frac{\mu_0 \hat{v} I}{4 \pi} \ln \left( i(- \frac{i}{\sqrt{y}} x) + \sqrt{1 - (- \frac{i}{\sqrt{y}} x)^2} \right) |_{x_1}^{x_2} =
 \end{equation*}
 \begin{equation*}
-    = \frac{\mu_0 \hat{v} I}{4 \pi} \ln \left( \frac{x}{\sqrt{y}} + \sqrt{1 + \frac{x^2}{y}} \right) |_{x_1}^{x_2} = \frac{\mu_0 \hat{v} I}{4 \pi} \ln \left( \frac{x_2 + \sqrt{(x_2)^2 + y}}{x_1 + \sqrt{(x_1)^2 + y}} \right)
+    = \frac{\mu_0 \hat{v} I}{4 \pi} \ln \left( \frac{x + \sqrt{y + x^2}}{\sqrt{y}} \right) |_{x_1}^{x_2} = \frac{\mu_0 \hat{v} I}{4 \pi} \ln \left( \frac{x_2 + \sqrt{(x_2)^2 + y}}{x_1 + \sqrt{(x_1)^2 + y}} \right)
 \end{equation*}
 
-Transitioning back to coordinates of definition \ref{eq:translatedSphericalCoordinatesForStraightWire}, the effect a stationary straight wire with constant current $I$ has on $\vec{A}(\vec{r}, t_r)$ can be expressed as
+Transitioning back to the coordinates of definition \ref{eq:translatedSphericalCoordinatesForStraightWire}, the effect a stationary straight wire with constant current $I$ has on $\vec{A}(\vec{r}, t)$ can be expressed as
 
 \begin{equation}
     \label{eq:effectOfStationaryStraightWireWithConstantCurrentOnA}
-    \vec{A}(\vec{r}, t_r) = \frac{\mu_0 \hat{v} I}{4 \pi} \ln \left( \frac{\rho_2 + (\hat{v} \cdot (\vec{r} - \vec{r_0})) + |\vec{r} - (\vec{r_0} + \rho_2 \hat{v})|}{\rho_1 + (\hat{v} \cdot (\vec{r} - \vec{r_0})) + |\vec{r} - (\vec{r_0} + \rho_1 \hat{v})|} \right)
+    \vec{A}(\vec{r}, t) = \frac{\mu_0 \hat{v} I}{4 \pi} \ln \left( \frac{\rho_2 + (\hat{v} \cdot (\vec{r} - \vec{r_0})) + |\vec{r} - (\vec{r_0} + \rho_2 \hat{v})|}{\rho_1 + (\hat{v} \cdot (\vec{r} - \vec{r_0})) + |\vec{r} - (\vec{r_0} + \rho_1 \hat{v})|} \right)
 \end{equation}
 
-If we assume $\rho_1 = 0$ and define $\vec{r_1} = \vec{r_0} + \rho_2 \hat{v} \Rightarrow \rho_2 = |r_1 - r_0|$, then the above expression can be written as
+If we assume $\rho_1 = 0$ and define $\vec{r_1} = \vec{r_0} + \rho_2 \hat{v} \Rightarrow \rho_2 = |r_1 - r_0|$, then the above expression turns into
 
 \begin{equation*}
-    \vec{A}(\vec{r}, t_r) = \frac{\mu_0 \hat{v} I}{4 \pi} \ln \left( \frac{|\vec{r_1} - \vec{r_0}| + (\hat{v} \cdot (\vec{r} - \vec{r_0})) + |\vec{r} - \vec{r_1}|}{(\hat{v} \cdot (\vec{r} - \vec{r_0})) + |\vec{r} - \vec{r_0}|} \right)
+    \vec{A}(\vec{r}, t) = \frac{\mu_0 \hat{v} I}{4 \pi} \ln \left( \frac{|\vec{r_1} - \vec{r_0}| + (\hat{v} \cdot (\vec{r} - \vec{r_0})) + |\vec{r} - \vec{r_1}|}{(\hat{v} \cdot (\vec{r} - \vec{r_0})) + |\vec{r} - \vec{r_0}|} \right)
 \end{equation*}
 
-Finally, note that this result also approximates cases where $I$ does depend on time, but $t_r \approx t$. In these cases, the current can be approximated as $I(t_r) \approx I(t)$ and brought outside the integral just like the constant current.
+Finally, note that this result also \href{https://en.wikipedia.org/wiki/Approximation}{approximates} cases where $I$ does depend on time, but $t_r \approx t$. In these cases, the current can be approximated as $I(t_r) \approx I(t)$ and brought outside the integral just like a constant current.
+
+\subsubsection{The not-so-special case of exponential current}
+
+In the more generalized case of $f(t - \frac{1}{c} \sqrt{x^2 + y}) = e^{a(t - \frac{1}{c} \sqrt{x^2 + y})}$, where $a$ may be complex, equation \ref{eq:simplifiedIntegralForTheEffectOfAStationaryStraightWireOnA} takes on the form
+
+\begin{equation*}
+    \vec{A}(\vec{r}, t) = \frac{\mu_0 \hat{v}}{4 \pi} \int_{x_1}^{x_2} \frac{e^{a(t - \frac{1}{c} \sqrt{x^2 + y})}}{\sqrt{x^2 + y}} dx = \frac{\mu_0 \hat{v}}{4 \pi} e^{at} \int_{x_1}^{x_2} \frac{e^{- \frac{a}{c} \sqrt{x^2 + y}}}{\sqrt{x^2 + y}} dx
+\end{equation*}
+
+Due to the difficulty of solving this integral analytically, the \href{https://en.wikipedia.org/wiki/Taylor_series}{Taylor series} approximation
+
+\begin{equation*}
+    e^{- \frac{a}{c} \sqrt{x^2 + y}} = \sum_{n = 0}^{\infty} \frac{ \frac{\partial^n}{\partial x_0^n} \left( e^{- \frac{a}{c} \sqrt{x_0^2 + y}} \right)}{n!} (x - x_0)^n
+\end{equation*}
+
+is used.
+
+The identity $\frac{d}{dx} e^{f(x)} = f'(x) e^{f(x)}$, provided on the \href{https://en.wikipedia.org/wiki/Exponential_function}{Wikipedia article on the exponential function}, allows us, in conjunction with the \href{https://en.wikipedia.org/wiki/Product_rule}{product rule}, to write $\frac{d^n}{dx^n} e^{f(x)} = p_n(x) e^{f(x)}$ as 
+
+\begin{equation*}
+    p_n(x) e^{f(x)} = \frac{d}{dx} (p_{n - 1}(x) e^{f(x)}) = \frac{d}{dx}(e^{f(x)}) \cdot p_{n - 1}(x) + e^{f(x)} \cdot \frac{d}{dx} (p_{n - 1}(x)) \Rightarrow
+\end{equation*}
+\begin{equation*}
+    \Rightarrow p_n(x) = \frac{d}{dx}(f(x)) \cdot p_{n - 1}(x) + \frac{d}{dx}(p_{n - 1}(x)) \hspace{10pt} ; \hspace{10pt} p_0(x) = 1
+\end{equation*}
+
+This recursive definition allows us to write the sum as
+
+\begin{equation*}
+    \sum_{n = 0}^{\infty} \frac{p_n(x_0) e^{- \frac{a}{c} \sqrt{x_0^2 + y}}}{n!} (x - x_0)^n = e^{- \frac{a}{c} \sqrt{x_0^2 + y}} \sum_{n = 0}^{\infty} \frac{p_n(x_0)}{n!} (x - x_0)^n
+\end{equation*}
+
+which in turn allows us to write the integral as
+
+\begin{equation*}
+    \frac{\mu_0 \hat{v}}{4 \pi} e^{a(t - \frac{1}{c} \sqrt{x_0^2 + y})} \sum_{n = 0}^{\infty} \frac{p_n(x_0)}{n!} \int_{x_1}^{x_2} \frac{(x - x_0)^n}{\sqrt{x^2 + y}} dx
+\end{equation*}
+
+For the case $f(x) = - \frac{a}{c} \sqrt{x^2 + y}$, we can use the \href{https://en.wikipedia.org/wiki/Quotient_rule}{quotient rule} to define
+
+\begin{equation*}
+    \frac{d^n}{dx^n} f(x) = - \frac{a}{c} \frac{g_n(x)}{h_n(x)} = - \frac{a}{c} \frac{\frac{d}{dx} (g_{n - 1}(x)) h_{n - 1}(x) - g_{n - 1}(x) \frac{d}{dx} (h_{n - 1}(x))}{(h_{n - 1}(x))^2}
+\end{equation*}
+
+where $n \geq 1$. We see from the denominator that $h_n(x) = h_1(x)^{2^{n-1}} = (\sqrt{x^2 + y})^{2^{n - 1}} = (x^2 + y)^{2^{n - 2}}$. This allows us to simplify the \href{https://en.wikipedia.org/wiki/Recursive_definition}{recursive definition}
+
+\begin{equation*}
+     g_n(x) = \frac{d}{dx} (g_{n - 1}(x)) h_1(x)^{2^{n - 2}} - g_{n - 1}(x) (2^{n - 2} h_1(x)^{2^{n - 3}} \frac{d}{dx} (h_1(x))) =
+\end{equation*}
+\begin{equation*}
+    = \frac{d}{dx} (g_{n - 1}(x)) (x^2 + y)^{2^{n - 3}} - 2^{n - 2} g_{n - 1}(x) g_1(x) (x^2 + y)^{2^{n - 3} - 1}
+\end{equation*}
+
+where $g_1(x) = x$. Combining the results for $g_n(x)$ and $h_n(x)$, we write $\frac{d^n}{dx^n} f(x)$ as
+
+\begin{equation*}
+    - \frac{a}{c} \frac{d}{dx} (g_{n - 1}(x)) (x^2 + y)^{- (2^{n - 3})} - 2^{n - 2} x g_{n - 1}(x) (x^2 + y)^{-(2^{n - 3} + 1)}
+\end{equation*}
 
 \end{document}
