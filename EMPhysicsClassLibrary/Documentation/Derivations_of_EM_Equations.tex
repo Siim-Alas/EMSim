@@ -171,13 +171,13 @@ Transitioning back to the coordinates of definition \ref{eq:translatedSphericalC
 
 \begin{equation}
     \label{eq:effectOfStationaryStraightWireWithConstantCurrentOnA}
-    \vec{A}(\vec{r}, t) = \frac{\mu_0 \hat{v} I}{4 \pi} \ln \left( \frac{\rho_2 + (\hat{v} \cdot (\vec{r} - \vec{r_0})) + |\vec{r} - (\vec{r_0} + \rho_2 \hat{v})|}{\rho_1 + (\hat{v} \cdot (\vec{r} - \vec{r_0})) + |\vec{r} - (\vec{r_0} + \rho_1 \hat{v})|} \right)
+    \vec{A}(\vec{r}, t) = \frac{\mu_0 \hat{v} I}{4 \pi} \ln \left( \frac{\rho_2 - (\hat{v} \cdot (\vec{r} - \vec{r_0})) + |\vec{r} - (\vec{r_0} + \rho_2 \hat{v})|}{\rho_1 - (\hat{v} \cdot (\vec{r} - \vec{r_0})) + |\vec{r} - (\vec{r_0} + \rho_1 \hat{v})|} \right)
 \end{equation}
 
 If we assume $\rho_1 = 0$ and define $\vec{r_1} = \vec{r_0} + \rho_2 \hat{v} \Rightarrow \rho_2 = |r_1 - r_0|$, then the above expression turns into
 
 \begin{equation*}
-    \vec{A}(\vec{r}, t) = \frac{\mu_0 \hat{v} I}{4 \pi} \ln \left( \frac{|\vec{r_1} - \vec{r_0}| + (\hat{v} \cdot (\vec{r} - \vec{r_0})) + |\vec{r} - \vec{r_1}|}{(\hat{v} \cdot (\vec{r} - \vec{r_0})) + |\vec{r} - \vec{r_0}|} \right)
+    \vec{A}(\vec{r}, t) = \frac{\mu_0 \hat{v} I}{4 \pi} \ln \left( \frac{|\vec{r_1} - \vec{r_0}| - (\hat{v} \cdot (\vec{r} - \vec{r_0})) + |\vec{r} - \vec{r_1}|}{|\vec{r} - \vec{r_0}| - (\hat{v} \cdot (\vec{r} - \vec{r_0}))} \right)
 \end{equation*}
 
 Finally, note that this result also \href{https://en.wikipedia.org/wiki/Approximation}{approximates} cases where $I$ does depend on time, but $t_r \approx t$. In these cases, the current can be approximated as $I(t_r) \approx I(t)$ and brought outside the integral just like a constant current.
@@ -190,9 +190,7 @@ In the more generalized case of $f(\rho, t_r) = e^{a(t_r - \frac{\rho}{c})} = e^
     u = \ln \left( \frac{x + \sqrt{x^2 + y}}{\sqrt{y}} \right) \Rightarrow du = \frac{dx}{\sqrt{x^2 + y}} \Rightarrow dx = \sqrt{x^2 + y} du
 \end{equation*}
 
-which is \href{https://en.wikipedia.org/wiki/Bijection}{bijective} as long as $x > 0$. This will be an assumption from now on.
-
-From this change of variables we see that
+and writing $f(\rho, t_r)$ as
 
 \begin{equation*}
     e^{a(t - \frac{\hat{v} \cdot (\vec{r} - \vec{r_0})}{c} - \frac{1}{c} (x + \sqrt{x^2 + y}))} = e^{a(t - \frac{\hat{v} \cdot (\vec{r} - \vec{r_0})}{c} - \frac{\sqrt{y}}{c} e^u)}
@@ -209,91 +207,40 @@ where $u_n = \ln \left( \frac{x_n + \sqrt{x_n^2 + y}}{\sqrt{y}} \right)$.
 Using the \href{https://en.wikipedia.org/wiki/Leibniz_integral_rule}{Leibniz integral rule}, presented in the Wikipeida article as
 
 \begin{equation*}
-    \frac{d}{dx} \left( \int_{a(x)}^{b(x)} f(x, t) dt \right) = f(x, b(x)) \frac{db}{dx} - f(x, a(x)) \frac{da}{dx} + \int_{a(x)}^{b(x)} \frac{\partial}{\partial x} f(x, t) dt
+    \frac{d}{dx} \left( \int_{a(x)}^{b(x)} f(x, t) dt \right) = f(x, b(x)) \frac{db(x)}{dx} - f(x, a(x)) \frac{da(x)}{dx} + \int_{a(x)}^{b(x)} \frac{\partial}{\partial x} f(x, t) dt
 \end{equation*}
 
-we can see that in the case of $\frac{\partial}{\partial x} f(x, t) = 0$, the conditions $\frac{da}{dx} = 0$ and $f(x, b(x)) \frac{db}{dx} = e^{- \frac{a \sqrt{y}}{c} e^x}$ are enough to guarantee that $\int_{a(x)}^{b(x)} f(x, t) dt$ is a solution to our integral above.
+we can see that in the case of $\frac{\partial}{\partial x} f(x, t) = 0$, the conditions $f(x, a(x)) \frac{da(x)}{dx} = e^{- \frac{a \sqrt{y}}{c} e^x}$ (note that in this case $a(x) \neq a$) and $\frac{db(x)}{dx} = 0$ are enough to guarantee that $- \int_{a(x)}^{b(x)} f(x, t) dt$ is a solution to our integral above.
 
-The condition $\frac{\partial}{\partial x} f(x, t) = 0$ means that $f(x, t) = f(t)$ is only a function of the second variable ($t$ in this case), leaving us with the condition $f(b(x)) \frac{db}{dx} = e^{- \frac{a \sqrt{y}}{c} e^x}$. A convenient way to solve this would be to set $b(x) = \frac{db}{dx} = - \frac{a \sqrt{y}}{c} e^x$ and then $f(t) = \frac{1}{t} e^t$. Finally, because of the condition $\frac{da}{dx} = 0$, we set that to an arbitrary constant. In conclusion, we have
+The condition $\frac{\partial}{\partial x} f(x, t) = 0$ means that $f(x, t) = f(t)$ is only a function of the second variable ($t$ in this case), leaving us with the condition $f(a(x)) \frac{da(x)}{dx} = e^{- \frac{a \sqrt{y}}{c} e^x}$. A convenient way to solve this would be to set $a(x) = \frac{da(x)}{dx} = \frac{a \sqrt{y}}{c} e^x$ and then $f(t) = \frac{1}{t} e^{- t}$. Finally, because of the condition $\frac{db(x)}{dx} = 0$, we set that to an arbitrary constant. In conclusion, we have
 
 \begin{equation*}
-    \frac{d}{dx} \left( \int_{a}^{- \frac{a \sqrt{y}}{c} e^x} \frac{e^t}{t} dt \right) = \frac{e^{- \frac{a \sqrt{y}}{c} e^x}}{- \frac{a \sqrt{y}}{c} e^x} (- \frac{a \sqrt{y}}{c} e^x) + 0 + \int_a^{- \frac{a \sqrt{y}}{c} e^x} \frac{\partial}{\partial x} (\frac{e^t}{t}) dt = e^{- \frac{a \sqrt{y}}{c} e^x}
+    \frac{d}{dx} \left( \int_{\frac{a \sqrt{y}}{c} e^x}^{b} \frac{e^{- t}}{t} dt \right) = 0 - \frac{e^{- \frac{a \sqrt{y}}{c} e^x}}{\frac{a \sqrt{y}}{c} e^x} (\frac{a \sqrt{y}}{c} e^x) + \int_{\frac{a \sqrt{y}}{c} e^x}^{b} \frac{\partial}{\partial x} (\frac{e^{-t}}{t}) dt = - e^{- \frac{a \sqrt{y}}{c} e^x}
 \end{equation*}
 
-or more succinctly
+If we take $b = \infty$, then this can be succinctly written as
 
 \begin{equation*}
-    \frac{d}{dx} Ei(- \frac{a \sqrt{y}}{c} e^x) = - \frac{a \sqrt{y}}{c} e^x
+    \frac{d}{dx} E_1(\frac{a \sqrt{y}}{c} e^x) = - e^{- \frac{a \sqrt{y}}{c} e^x}
 \end{equation*}
 
-where $Ei(x)$ is the \href{https://en.wikipedia.org/wiki/Exponential_integral}{exponential integral}. This allows us to rewrite the original integral as
+where $E_1(x)$ is the \href{https://en.wikipedia.org/wiki/Exponential_integral}{exponential integral}, generalized to complex variables. This allows us to rewrite the original integral as
 
 \begin{equation*}
-    \frac{\mu_0 \hat{v}}{4 \pi} e^{a(t - \frac{\hat{v} \cdot (\vec{r} - \vec{r_0})}{c})} \int_{u_1}^{u_2} \frac{d}{du} Ei(e^{- \frac{a \sqrt{y}}{c} e^u}) du = \frac{\mu_0 \hat{v}}{4 \pi} e^{a(t - \frac{\hat{v} \cdot (\vec{r} - \vec{r_0})}{c})} Ei(e^{- \frac{a \sqrt{y}}{c} e^u}) |_{u = u_1}^{u = u_2}
+    \frac{\mu_0 \hat{v}}{4 \pi} e^{a(t - \frac{\hat{v} \cdot (\vec{r} - \vec{r_0})}{c})} \int_{u_1}^{u_2} - \frac{d}{du} E_1(\frac{a \sqrt{y}}{c} e^u) du =
+\end{equation*}
+\begin{equation*}
+    = - \frac{\mu_0 \hat{v}}{4 \pi} e^{a(t - \frac{\hat{v} \cdot (\vec{r} - \vec{r_0})}{c})} E_1(\frac{a \sqrt{y}}{c} e^u) |_{u_1}^{u_2} =
+\end{equation*}
+\begin{equation*}
+    = - \frac{\mu_0 \hat{v}}{4 \pi} e^{a(t - \frac{\hat{v} \cdot (\vec{r} - \vec{r_0})}{c})} E_1 \left( \frac{a}{c} (x + \sqrt{x^2 + y}) \right) |_{x_1}^{x_2}
 \end{equation*}
 
-Transitioning back to the $x$-variable, we have
+Transitioning back to the coordinates of definition \ref{eq:translatedSphericalCoordinatesForStraightWire}, we get
 
 \begin{equation}
     \label{eq:effectOfAStationaryStraightWireWithExponentialCurrentOnA}
-    \vec{A}(\vec{r}, t) = \frac{\mu_0 \hat{v}}{4 \pi} e^{a(t - \frac{\hat{v} \cdot (\vec{r} - \vec{r_0})}{c})} Ei(e^{- \frac{a}{c} (x + \sqrt{x^2 + y})}) |_{x = x_1}^{x = x_2}
+    \vec{A}(\vec{r}, t) = - \frac{\mu_0 \hat{v}}{4 \pi} e^{a(t - \frac{\hat{v} \cdot (\vec{r} - \vec{r_0})}{c})} E_1 \left( \frac{a}{c} (\rho - (\hat{v} \cdot (\vec{r} - \vec{r_0})) + |\vec{r} - (\vec{r_0} + \rho \hat{v})|) \right) |_{\rho_1}^{\rho_2}
 \end{equation}
-
-\begin{comment}
-
-In the more generalized case of $f(x + (\hat{v} \cdot (\vec{r} - \vec{r_0})), t - \frac{1}{c} \sqrt{x^2 + y}) = e^{a(t - \frac{1}{c} \sqrt{x^2 + y})}$, where $a$ may be complex, equation \ref{eq:simplifiedIntegralForTheEffectOfAStationaryStraightWireOnA} takes on the form
-
-\begin{equation*}
-    \vec{A}(\vec{r}, t) = \frac{\mu_0 \hat{v}}{4 \pi} \int_{x_1}^{x_2} \frac{e^{a(t - \frac{1}{c} \sqrt{x^2 + y})}}{\sqrt{x^2 + y}} dx = \frac{\mu_0 \hat{v}}{4 \pi} e^{at} \int_{x_1}^{x_2} \frac{e^{- \frac{a}{c} \sqrt{x^2 + y}}}{\sqrt{x^2 + y}} dx
-\end{equation*}
-
-Due to the difficulty of solving this integral analytically, we use the \href{https://en.wikipedia.org/wiki/Taylor_series}{Taylor series} approximation
-
-\begin{equation*}
-    e^{- \frac{a}{c} \sqrt{x^2 + y}} = \sum_{n = 0}^{\infty} \frac{ \frac{\partial^n}{\partial x_0^n} \left( e^{- \frac{a}{c} \sqrt{x_0^2 + y}} \right)}{n!} (x - x_0)^n
-\end{equation*}
-
-The identity $\frac{d}{dx} e^{f(x)} = f'(x) e^{f(x)}$, provided on the \href{https://en.wikipedia.org/wiki/Exponential_function}{Wikipedia article on the exponential function}, allows us, in conjunction with the \href{https://en.wikipedia.org/wiki/Product_rule}{product rule}, to write $\frac{d^n}{dx^n} e^{f(x)} = p_n(x) e^{f(x)}$ as 
-
-\begin{equation*}
-    p_n(x) e^{f(x)} = \frac{d}{dx} (p_{n - 1}(x) e^{f(x)}) = \frac{d}{dx}(e^{f(x)}) \cdot p_{n - 1}(x) + e^{f(x)} \cdot \frac{d}{dx} (p_{n - 1}(x)) \Rightarrow
-\end{equation*}
-\begin{equation*}
-    \Rightarrow p_n(x) = \frac{d}{dx}(f(x)) \cdot p_{n - 1}(x) + \frac{d}{dx}(p_{n - 1}(x)) \hspace{10pt} ; \hspace{10pt} p_0(x) = 1
-\end{equation*}
-
-This \href{https://en.wikipedia.org/wiki/Recursive_definition}{recursive definition} allows us to write the sum as
-
-\begin{equation*}
-    \sum_{n = 0}^{\infty} \frac{p_n(x_0) e^{- \frac{a}{c} \sqrt{x_0^2 + y}}}{n!} (x - x_0)^n = e^{- \frac{a}{c} \sqrt{x_0^2 + y}} \sum_{n = 0}^{\infty} \frac{p_n(x_0)}{n!} (x - x_0)^n
-\end{equation*}
-
-which in turn allows us to write the integral as
-
-\begin{equation*}
-    \frac{\mu_0 \hat{v}}{4 \pi} e^{a(t - \frac{1}{c} \sqrt{x_0^2 + y})} \sum_{n = 0}^{\infty} \frac{p_n(x_0)}{n!} \int_{x_1}^{x_2} \frac{(x - x_0)^n}{\sqrt{x^2 + y}} dx
-\end{equation*}
-
-For the case $f(x) = \sqrt{x^2 + y}$, we can use the \href{https://en.wikipedia.org/wiki/Quotient_rule}{quotient rule} to define
-
-\begin{equation*}
-    \frac{d^n}{dx^n} f(x) = \frac{g_n(x)}{h_n(x)} = \frac{\frac{d}{dx} (g_{n - 1}(x)) h_{n - 1}(x) - g_{n - 1}(x) \frac{d}{dx} (h_{n - 1}(x))}{(h_{n - 1}(x))^2}
-\end{equation*}
-
-where $n \geq 1$. We see from the denominator that $h_n(x) = h_1(x)^{2^{n-1}} = (\sqrt{x^2 + y})^{2^{n - 1}} = (x^2 + y)^{2^{n - 2}}$. This allows us to simplify the recursive definition
-
-\begin{equation*}
-     \frac{d^n}{dx^n} f(x) =  \frac{\frac{d}{dx} (g_{n - 1}(x)) h_1(x)^{2^{n - 2}} - g_{n - 1}(x) (2^{n - 2} h_1(x)^{2^{n - 3}} \frac{d}{dx} (h_1(x)))}{h_1(x)^{2^{n-1}}} =
-\end{equation*}
-\begin{equation*}
-    = \frac{\frac{d}{dx} (g_{n - 1}(x)) (x^2 + y)^{2^{n - 3}} - 2^{n - 2} x g_{n - 1}(x) (x^2 + y)^{2^{n - 3} - 1}}{(x^2 + y)^{2^{n - 2}}} =
-\end{equation*}
-\begin{equation*}
-    = \frac{d}{dx} (g_{n - 1}(x)) (x^2 + y)^{- (2^{n - 3})} - 2^{n - 2} x g_{n - 1}(x) (x^2 + y)^{-(2^{n - 3} + 1)}
-\end{equation*}
-
-where $g_1(x) = x$.
-
-\end{comment}
 
 \end{document}
